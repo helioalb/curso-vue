@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <button v-on:click="aumentar1">Aumentar 1</button>
+  <button v-on:click="diminuir1">Diminuir 1</button>
+  <button v-on:click="aumentar2">Aumentar 2</button>
+  <button v-on:click="diminuir2">Diminuir 2</button>
+
+  <p>Contador 1: {{ contador1 }}</p>
+  <p> {{ resultado }}</p>
+
+  <hr>
+
+  <p>Contador 2: {{ contador2 }}</p>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      contador1: 0,
+      contador2: 0 
+    },
+    watch: {
+      contador1(novo, antigo) {
+        console.log('Novo: ', novo, ' Antigo: ', antigo)
+        setTimeout(() => {
+          this.contador1 = 0
+        }, 5000);
+      }
+    },
+    computed: {
+      resultado() {
+        console.log('Chamado somente quando há mudança no contador 1')
+        return this.contador1 > 5 ? 'Maior que 5' : 'Menor ou igual a 5'
+      }
+    },
+    methods: {
+      aumentar1() {
+        this.contador1++
+      },
+      diminuir1() {
+        this.contador1--
+      },
+      aumentar2() {
+        this.contador2++
+      },
+      diminuir2() {
+        this.contador2--
+      }
+    }
+  })
+</script> 
+</body>
+</html>
+
