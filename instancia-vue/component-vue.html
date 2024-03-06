@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <comp></comp>
+    <comp></comp>
+    <comp></comp>
+  </div>
+<script>
+  Vue.component('comp', {
+    template: `
+    <div>
+      <h1 ref="aulaRef">{{ aula }}</h1>
+      <h2>{{ modulo }}</h2>
+      <button @click="alteraAula">Altera aula</button>
+      <button @click="alteraModulo">Altera modulo</button>
+    </div>
+    `,
+    data() {
+      return {
+        aula: 'Montando instancia vue',
+        modulo: 'instância Vue'
+      }
+    },
+    methods: {
+      alteraAula() {
+        this.aula += '#'
+        console.log(this.$refs.aulaRef.innerText)
+      },
+      alteraModulo() {
+        this.modulo += '#'
+      }
+    }
+  })
+  
+  const vm = new Vue({
+    el: '#app'
+  })
+
+</script> 
+</body>
+</html>
+
